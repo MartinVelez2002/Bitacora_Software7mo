@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="mx-3 mt-5">
+        <h4 class="text-center">{{ titulo_list }}</h4>
+        <table class="container table table-responsive">
+            <thead>
+            <tr>
+                <th> Nombre docente </th>
+                <th> Fecha Creación </th>
+                <th> Nombre de la actividad </th>
+                <th> Horas </th>
+                <th> Evidencia </th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for objects in docentes %}
+
+                <tr>
+                    <td> {{ objects.nombre }} </td>
+                    <td> {{ objects.apellido }}</td>
+                    <td> {{ objects.correo }} </td>
+                    <td> {{ objects.telefono }} </td>
+                    <td>
+                        <div class="btn-accion">
+                            <div class="cab-tool">
+                                <a class="text-decoration-none" href="{% url 'docentes:editar_docente' objects.id %}">
+                                    <i class="ri-edit-2-line text-dark"></i>
+                                    <span class="tooltip-infor-icon"> Editar datos </span>
+                                </a>
+                            </div>
+
+                            <div class="cab-tool">
+                                <a class="text-decoration-none" href="{% url 'docentes:eliminar_docente' objects.id %}">
+                                    <i class="ri-eraser-line text-dark"></i>
+                                    <span class="tooltip-infor-icon"> Eliminar registro </span>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mt-5">
+
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    </li>
+                {% endif %}
+
+                {% for i in page_obj.paginator.page_range %}
+
+                    {% if i == page_obj.number %}
+                        <li class="page-item active">
+                            <a class="page-link" href="#">{{ i }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                        </li>
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+        <a class="text-decoration-none"
+           href="{% url 'docentes:agregar_docente' %}">
+            <button class="btn btn-primary" >
+                Agregar más registros
+            </button>
+        </a>
+
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="mx-5">
+        <form class="container text-dark" method="POST" action="{{ action_save }}" id="formulario"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="card card-primary mt-5">
+                <div class="card-header bg-black">
+                    <h3 class="card-title text-center text-white">
+                        {{ titulo_add }}
+                    </h3>
+                </div>
+                <div class="card-body g-3 mt-1">
+                    {% block formulario %}
+
+                    {% endblock %}
+                </div>
+
+                {% block boton %}
+                    <div class="d-flex justify-content-evenly pb-3">
+                        <div>
+                            <button type="submit" class="btn btn-success" id="boton-guardar">
+                                Okay
+                            </button>
+                        </div>
+                        <div>
+                            <a href="{{ url_anterior }}" class="btn btn-danger">
+                                Cancelar
+                            </a>
+                        </div>
+                    </div>
+                {% endblock %}
+
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

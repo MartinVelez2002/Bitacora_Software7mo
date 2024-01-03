@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block NombreModo %}
+    <a class="navbar-brand text-white text-center" href="/"> Regresar </a>
+{% endblock %}
+
+{% block main %}
+    <div class="container d-flex justify-content-evenly mt-4">
+        <div class="card px-2 py-2" style="width: 16rem;">
+            <a class="text-decoration-none" href="{% url 'actividad:crear_actividad' %}">
+                <img src="{% static 'img/Icono Actividades.png' %}" class="card-img-top" alt="Icono Docente">
+                <div class="card-body">
+                    <p class="card-text text-center fs-5 text-decoration-none"> Registrar una nueva actividad </p>
+                </div>
+            </a>
+        </div>
+        <div class="card px-2 py-2" style="width: 16rem;">
+            <img src="{% static 'img/Listar Actividad.png' %}" class="card-img-top" alt="Icono Actividades">
+            <div class="card-body">
+                <a class="text-decoration-none" href="{% url 'actividad:listar_actividades' %}">
+                    <p class="card-text text-center fs-5"> Lista de Actividades </p>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
